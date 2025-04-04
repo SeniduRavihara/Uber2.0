@@ -7,6 +7,8 @@ import "react-native-reanimated";
 import { Provider } from "react-redux";
 import "../global.css";
 import { store } from "../store";
+import "react-native-get-random-values";
+
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
