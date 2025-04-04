@@ -1,8 +1,16 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
+type Point = {
+  lat: number; // Latitude
+  lng: number; // Longitude
+};
+
 export interface NavState {
-  origin: string | null;
+  origin: {
+    location: Point | undefined;
+    description: string;
+  } | null;
   destination: string | null;
   travelTimeInformation: string | null;
 }
@@ -17,13 +25,19 @@ export const navSlice = createSlice({
   name: "nav",
   initialState,
   reducers: {
-    setOrigin: (state, action: PayloadAction<string>) => {
+    setOrigin: (
+      state,
+      action: PayloadAction<{
+        location: Point | undefined;
+        description: string;
+      }>
+    ) => {
       state.origin = action.payload;
     },
-    setDestination: (state, action: PayloadAction<string>) => {
+    setDestination: (state, action: PayloadAction<string | null>) => {
       state.destination = action.payload;
     },
-    setTravelTimeInformation: (state, action: PayloadAction<string>) => {
+    setTravelTimeInformation: (state, action: PayloadAction<string | null>) => {
       state.travelTimeInformation = action.payload;
     },
   },

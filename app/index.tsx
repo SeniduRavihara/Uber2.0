@@ -1,11 +1,13 @@
 import NavOptions from "@/components/NavOptions";
-import { Image, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { setDestination, setOrigin } from "@/features/nav/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import { Image, View } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
 
 export default function HomeScreen() {
-
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView className="bg-white w-screen h-screen">
@@ -23,8 +25,16 @@ export default function HomeScreen() {
             language: "en",
           }}
           onPress={(data, details = null) => {
-            console.log(data, details);
+            dispatch(
+              setOrigin({
+                location: details?.geometry.location,
+                description: data.description,
+              })
+            );
+
+            dispatch(setDestination(null));
           }}
+          fetchDetails={true}
           nearbyPlacesAPI="GooglePlacesSearch"
           enablePoweredByContainer={false}
           debounce={400}
