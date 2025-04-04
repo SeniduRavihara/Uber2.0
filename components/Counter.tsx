@@ -9,13 +9,13 @@ export function Counter() {
     const dispatch = useDispatch();
 
     return (
-        <View style={styles.container}>
-            <View style={styles.buttonContainer}>
+        <View >
+            <View className="flex-row bg-green-400">
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => dispatch(increment())}
                 >
-                    <Text style={styles.buttonText}>Increment</Text>
+                    <Text className="text-xl text-white">Increment</Text>
                 </TouchableOpacity>
                 <Text style={styles.countText}>{count}</Text>
                 <TouchableOpacity

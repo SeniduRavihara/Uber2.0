@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
